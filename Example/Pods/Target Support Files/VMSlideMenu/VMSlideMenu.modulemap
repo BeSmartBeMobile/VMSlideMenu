@@ -1,0 +1,6 @@
+framework module VMSlideMenu {
+  umbrella header "VMSlideMenu-umbrella.h"
+
+  export *
+  module * { export * }
+}

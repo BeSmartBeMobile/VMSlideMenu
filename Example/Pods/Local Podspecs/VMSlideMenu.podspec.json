@@ -1,0 +1,22 @@
+{
+  "name": "VMSlideMenu",
+  "version": "0.1.0",
+  "summary": "A short description of VMSlideMenu.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Jorge Lucena/VMSlideMenu",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Jorge Lucena": "jmlucena@vectoritcgroup.com"
+  },
+  "source": {
+    "git": "https://github.com/Jorge Lucena/VMSlideMenu.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "VMSlideMenu/Classes/**/*"
+}
