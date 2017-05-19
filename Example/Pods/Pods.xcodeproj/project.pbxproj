@@ -61,8 +61,9 @@
 		65E8CBAA7CB6D1DE33599E488671A80B /* Nimble-Snapshots-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC3CB0C7C9BDE6158189DAA3FFBED5 /* Nimble-Snapshots-dummy.m */; };
 		65F5217D44A557FC16218DE5DE348C35 /* CwlCatchBadInstruction.h in Headers */ = {isa = PBXBuildFile; fileRef = C176F393E5F2D0693CCCCA47B405EA01 /* CwlCatchBadInstruction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		67697002E3835243F40ABA92ED409343 /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18346C82D017A21FF2D24B18D2A19F96 /* DSL.swift */; };
-		68655FA61ECED30500CE683E /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA51ECED30500CE683E /* OptionCollectionViewCell.swift */; };
+		68655FA61ECED30500CE683E /* SectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA51ECED30500CE683E /* SectionCollectionViewCell.swift */; };
 		68655FA81ECED3AE00CE683E /* TabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA71ECED3AE00CE683E /* TabCollectionViewCell.swift */; };
+		68655FAA1ECF187100CE683E /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA91ECF187100CE683E /* OptionView.swift */; };
 		69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA451463938AAC29772A9BA4A644712 /* UIImage+Compare.m */; };
 		6CDBA48C3A8621E4EE1DAFFE240F0D82 /* CwlCatchBadInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5AB00D217C687CB83AE825D8B15F32 /* CwlCatchBadInstruction.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		6E397D9FB11A47E48D70287D734B12B2 /* BeLessThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D049190E109365BF9BA6BF1409B7F /* BeLessThan.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -283,8 +284,9 @@
 		64DF2E04EDA323EE4B83913F112D1497 /* DSL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DSL.m; path = Sources/NimbleObjectiveC/DSL.m; sourceTree = "<group>"; };
 		653859AE7243293D15353BAEBA55CA28 /* Quick-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-umbrella.h"; sourceTree = "<group>"; };
 		659B8AB20AB174FEF5F231B933012D98 /* VMSlideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VMSlideMenu-umbrella.h"; sourceTree = "<group>"; };
-		68655FA51ECED30500CE683E /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionCollectionViewCell.swift; path = Views/OptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		68655FA51ECED30500CE683E /* SectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionCollectionViewCell.swift; path = Views/SectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		68655FA71ECED3AE00CE683E /* TabCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabCollectionViewCell.swift; path = Views/TabCollectionViewCell.swift; sourceTree = "<group>"; };
+		68655FA91ECF187100CE683E /* OptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionView.swift; path = Views/OptionView.swift; sourceTree = "<group>"; };
 		68C2953A942F774F4EBD3FBA94996D98 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A75CD2BBED6DBFEC2C162C0CB9CA5FC /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
 		6BEFA8E939B30B44140B05C2224B1DDF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -604,7 +606,8 @@
 			isa = PBXGroup;
 			children = (
 				68655FA71ECED3AE00CE683E /* TabCollectionViewCell.swift */,
-				68655FA51ECED30500CE683E /* OptionCollectionViewCell.swift */,
+				68655FA51ECED30500CE683E /* SectionCollectionViewCell.swift */,
+				68655FA91ECF187100CE683E /* OptionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1214,12 +1217,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68655FAA1ECF187100CE683E /* OptionView.swift in Sources */,
 				C59CC0A31ECDEF03009C3669 /* MenuTab.swift in Sources */,
 				C59CC0A11ECDE2F3009C3669 /* MenuOption.swift in Sources */,
 				19B08AEB48E47BD97B5116CDE8CFB84E /* VMSlideMenuViewController.swift in Sources */,
 				68655FA81ECED3AE00CE683E /* TabCollectionViewCell.swift in Sources */,
 				18EABDF3330B407009C486B613BDDDF7 /* VMSlideMenu-dummy.m in Sources */,
-				68655FA61ECED30500CE683E /* OptionCollectionViewCell.swift in Sources */,
+				68655FA61ECED30500CE683E /* SectionCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

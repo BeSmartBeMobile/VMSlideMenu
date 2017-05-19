@@ -53,7 +53,7 @@ import Foundation
         collectionView.allowsMultipleSelection = false
         collectionView.autoresizesSubviews = true
         collectionView.backgroundColor = UIColor.white
-        collectionView.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.identifier)
+        collectionView.register(SectionCollectionViewCell.self, forCellWithReuseIdentifier: SectionCollectionViewCell.identifier)
         
         return collectionView
     }()
@@ -135,7 +135,7 @@ extension VMSlideMenuViewController: UICollectionViewDataSource {
             
         } else {
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.identifier, for: indexPath) as! OptionCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SectionCollectionViewCell.identifier, for: indexPath) as! SectionCollectionViewCell
             
             // TODO
             
