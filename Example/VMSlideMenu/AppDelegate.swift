@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                        MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
         ]
         
-        let tabs = [MenuTab(icon: #imageLiteral(resourceName: "tab1"), options: options),
-                    MenuTab(icon: #imageLiteral(resourceName: "tab2"), options: options)
+        let tabs = [MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: options),
+                    MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.red, options: options)
         ]
         
         let menuViewController = VMSlideMenuViewController(withTabs: tabs)
