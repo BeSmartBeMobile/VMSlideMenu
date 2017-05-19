@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VMSlideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let options = [MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
+                       MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
+        ]
+        
+        let tabs = [MenuTab(icon: #imageLiteral(resourceName: "tab1"), options: options),
+                    MenuTab(icon: #imageLiteral(resourceName: "tab2"), options: options)
+        ]
+        
+        let menuViewController = VMSlideMenuViewController(withTabs: tabs)
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.rootViewController = menuViewController
+        
         return true
     }
 
