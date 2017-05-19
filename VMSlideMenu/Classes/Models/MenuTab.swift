@@ -19,3 +19,10 @@ import Foundation
         super.init()
     }
 }
+
+extension MenuTab {
+    
+    var summary: TabCollectionViewCellSummary {
+        return TabCollectionViewCellSummary(image: self.icon)
+    }
+}

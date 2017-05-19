@@ -603,8 +603,8 @@
 		68655FA41ECED24A00CE683E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				68655FA51ECED30500CE683E /* OptionCollectionViewCell.swift */,
 				68655FA71ECED3AE00CE683E /* TabCollectionViewCell.swift */,
+				68655FA51ECED30500CE683E /* OptionCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

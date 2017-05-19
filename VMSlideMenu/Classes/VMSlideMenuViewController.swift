@@ -25,11 +25,12 @@ import Foundation
         collectionView.showsVerticalScrollIndicator = false
         collectionView.bounces = false
         collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = false
         collectionView.alwaysBounceHorizontal = true
         collectionView.alwaysBounceVertical = false
         collectionView.autoresizesSubviews = true
         collectionView.backgroundColor = self.backgroundColor
-//        collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        collectionView.register(TabCollectionViewCell.self, forCellWithReuseIdentifier: TabCollectionViewCell.identifier)
 
         return collectionView
     }()
@@ -49,9 +50,10 @@ import Foundation
         collectionView.showsVerticalScrollIndicator = false
         collectionView.bounces = false
         collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = false
         collectionView.autoresizesSubviews = true
         collectionView.backgroundColor = UIColor.white
-//        collectionView.register(<#T##cellClass: AnyClass?##AnyClass?#>, forCellWithReuseIdentifier: <#T##String#>)
+        collectionView.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.identifier)
         
         return collectionView
     }()
@@ -96,11 +98,31 @@ extension VMSlideMenuViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return tabs.count
+        if collectionView == tabsCollectionView {
+            return tabs.count
+        } else {
+            let selectedTabIndex = tabsCollectionView.indexPathsForSelectedItems?.first?.row ?? 0
+            return tabs[selectedTabIndex].options.count
+        }
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        return UICollectionViewCell()
+        if collectionView == tabsCollectionView {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TabCollectionViewCell.identifier, for: indexPath) as! TabCollectionViewCell
+            
+            cell.summary = tabs[indexPath.row].summary
+            
+            return cell
+            
+        } else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.identifier, for: indexPath) as! OptionCollectionViewCell
+            
+
+            
+            return cell
+        }
     }
 }

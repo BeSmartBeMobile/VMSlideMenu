@@ -10,4 +10,8 @@ import UIKit
 
 class OptionCollectionViewCell: UICollectionViewCell {
     
+    // MARK: Static properties
+    
+    static let identifier = "OptionCollectionViewCell"
+
 }
