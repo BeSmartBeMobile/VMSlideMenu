@@ -30,6 +30,26 @@ class SectionCollectionViewCell: UICollectionViewCell {
         return scrollView
     }()
     
+    lazy var optionViews: [OptionView] = []
+    
+    var summary: SectionCollectionViewCellSummary? {
+        didSet {
+            optionViews = summary?.options.flatMap { $0.view } ?? []
+            
+            guard let view = optionViews.first else {
+                return
+            }
+            
+            scrollView.addSubview(view)
+            
+            
+            let views: [String : Any] = ["view": view, "scrollView": scrollView]
+            
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view(==scrollView)]|", options: [], metrics: nil, views: views))
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view(==scrollView)]|", options: [], metrics: nil, views: views))
+        }
+    }
+    
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -56,4 +76,8 @@ class SectionCollectionViewCell: UICollectionViewCell {
 
 extension SectionCollectionViewCell: UIScrollViewDelegate {
 
+}
+
+struct SectionCollectionViewCellSummary {
+    let options: [MenuOption]
 }

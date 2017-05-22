@@ -74,7 +74,6 @@ class TabCollectionViewCell: UICollectionViewCell {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[imageView]-margin-|", options: [], metrics: metrics, views: views))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[selectedIndicator]|", options: [], metrics: metrics, views: views))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-margin-[imageView]-(>=margin)-[selectedIndicator(==indicatorHeight)]|", options: [], metrics: metrics, views: views))
- 
     }
 }
 

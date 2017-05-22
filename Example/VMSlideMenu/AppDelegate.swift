@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                        MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
         ]
         
-        let tabs = [MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: options),
+        let tabs = [MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: [MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option2"), action: { print("opción 3 pulsada") })]),
                     MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.red, options: options)
         ]
         

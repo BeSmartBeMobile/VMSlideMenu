@@ -35,7 +35,7 @@ import Foundation
         return collectionView
     }()
     
-    lazy var optionsCollectionView: UICollectionView = {
+    lazy var sectionsCollectionView: UICollectionView = {
         let optionsLayout = UICollectionViewFlowLayout()
         optionsLayout.scrollDirection = .horizontal
         
@@ -86,17 +86,17 @@ import Foundation
         navigationController?.hidesBarsOnSwipe = false
     
         view.addSubview(tabsCollectionView)
-        view.addSubview(optionsCollectionView)
+        view.addSubview(sectionsCollectionView)
         
         tabsCollectionView.selectItem(at: IndexPath(item: 0, section:0), animated: true, scrollPosition: .left)
         
         // Constraints
-        let views = ["tabsCollectionView": tabsCollectionView, "optionsCollectionView": optionsCollectionView]
+        let views = ["tabsCollectionView": tabsCollectionView, "sectionsCollectionView": sectionsCollectionView]
         let metrics = ["margin": 10, "menuHeight": height]
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[tabsCollectionView]|", options: [], metrics: metrics, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[optionsCollectionView]|", options: [], metrics: metrics, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tabsCollectionView(==menuHeight)][optionsCollectionView]|", options: [], metrics: metrics, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[sectionsCollectionView]|", options: [], metrics: metrics, views: views))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tabsCollectionView(==menuHeight)][sectionsCollectionView]|", options: [], metrics: metrics, views: views))
     }
 }
 
@@ -106,7 +106,8 @@ extension VMSlideMenuViewController: UICollectionViewDelegate {
         if collectionView == tabsCollectionView {
             
             guard let selectedTabIndexPath = tabsCollectionView.indexPathsForSelectedItems?.first else { return }
-            optionsCollectionView.scrollToItem(at: selectedTabIndexPath, at: .left, animated: true)
+            sectionsCollectionView.scrollToItem(at: selectedTabIndexPath, at: .left, animated: true)
+            tabsCollectionView.isUserInteractionEnabled = false
         }
     }
 }
@@ -115,12 +116,7 @@ extension VMSlideMenuViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if collectionView == tabsCollectionView {
-            return tabs.count
-        } else {
-            let selectedTabIndex = tabsCollectionView.indexPathsForSelectedItems?.first?.row ?? 0
-            return tabs[selectedTabIndex].options.count
-        }
+        return tabs.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,7 +133,7 @@ extension VMSlideMenuViewController: UICollectionViewDataSource {
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SectionCollectionViewCell.identifier, for: indexPath) as! SectionCollectionViewCell
             
-            // TODO
+            cell.summary = SectionCollectionViewCellSummary(options: tabs[indexPath.row].options)
             
             return cell
         }
@@ -170,19 +166,9 @@ extension VMSlideMenuViewController: UICollectionViewDelegateFlowLayout {
 
 extension VMSlideMenuViewController: UIScrollViewDelegate {
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-//        guard !tabsCollectionView.isUserInteractionEnabled else { return }
-        
-//        let offsetX = scrollView.contentOffset.x
-//        let currentIndexPath = tabsCollectionView.indexPathsForSelectedItems?.first
-        
-        
-    }
-    
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
-        guard scrollView != optionsCollectionView else { return }
+        guard scrollView == sectionsCollectionView else { return }
         
         let pageWidth = scrollView.bounds.width
         let x = scrollView.contentOffset.x
@@ -194,6 +180,6 @@ extension VMSlideMenuViewController: UIScrollViewDelegate {
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-//        tabsCollectionView.isUserInteractionEnabled = true
+        tabsCollectionView.isUserInteractionEnabled = true
     }
 }
