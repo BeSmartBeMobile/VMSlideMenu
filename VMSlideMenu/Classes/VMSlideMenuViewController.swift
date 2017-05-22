@@ -7,8 +7,10 @@ import Foundation
     
     let tabs: [MenuTab]
     
-    var backgroundColor: UIColor {
-        return UIColor.blue // TODO
+    public var backgroundColor: UIColor? {
+        didSet {
+            tabsCollectionView.backgroundColor = backgroundColor
+        }
     }
     
     lazy var tabsCollectionView: UICollectionView = {
@@ -63,9 +65,10 @@ import Foundation
     
     // MARK: - Initialization
  
-    public init(withTabs tabs: [MenuTab]) {
+    public init(withTabs tabs: [MenuTab], andBackgroundColor backgroundColor: UIColor? = nil) {
         self.tabs = tabs
- 
+        self.backgroundColor = backgroundColor
+        
         super.init(nibName: nil, bundle: nil)
     }
     

@@ -20,16 +20,17 @@ class TabCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = UIColor.gray
         
         return imageView
     }()
     
-    lazy var selectedIndicator: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.isHidden = !self.isSelected
+    lazy var selectedIndicator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = !self.isSelected
         
-        return imageView
+        return view
     }()
     
     var summary: TabCollectionViewCellSummary? {

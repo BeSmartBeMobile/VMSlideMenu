@@ -17,15 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let options = [MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
-                       MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
-        ]
-        
-        let tabs = [MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: [MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option2"), action: { print("opción 3 pulsada") })]),
-                    MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.red, options: options)
+        let tabs = [
+            MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: [
+                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") })
+                ]),
+            MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.red, options: [
+                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
+                ]),
+            MenuTab(icon: #imageLiteral(resourceName: "tab3"), selectionColor: UIColor.white, options: [
+                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") }),
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
+                ])
         ]
         
         let menuViewController = VMSlideMenuViewController(withTabs: tabs)
+        menuViewController.backgroundColor = UIColor.cyan
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

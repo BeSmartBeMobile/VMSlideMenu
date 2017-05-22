@@ -32,6 +32,11 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     lazy var optionViews: [OptionView] = []
     
+    var firstHeightConstraint: NSLayoutConstraint?
+    var lastHeightConstraint: NSLayoutConstraint?
+    var mainHeightConstraint: NSLayoutConstraint?
+    var viewHeightConstraint: NSLayoutConstraint?
+    
     var summary: SectionCollectionViewCellSummary? {
         didSet {
             optionViews = summary?.options.flatMap { $0.view } ?? []
