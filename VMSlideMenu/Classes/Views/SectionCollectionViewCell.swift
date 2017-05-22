@@ -30,7 +30,9 @@ class SectionCollectionViewCell: UICollectionViewCell {
         return scrollView
     }()
     
-    lazy var optionViews: [OptionView] = []
+    var optionViews: [OptionView] {
+        return summary?.options.flatMap { $0.view } ?? []
+    }
     
     var firstHeightConstraint: NSLayoutConstraint?
     var lastHeightConstraint: NSLayoutConstraint?
@@ -39,19 +41,8 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     var summary: SectionCollectionViewCellSummary? {
         didSet {
-            optionViews = summary?.options.flatMap { $0.view } ?? []
-            
-            guard let view = optionViews.first else {
-                return
-            }
-            
-            scrollView.addSubview(view)
             
             
-            let views: [String : Any] = ["view": view, "scrollView": scrollView]
-            
-            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view(==scrollView)]|", options: [], metrics: nil, views: views))
-            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view(==scrollView)]|", options: [], metrics: nil, views: views))
         }
     }
     
@@ -77,6 +68,46 @@ class SectionCollectionViewCell: UICollectionViewCell {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView(==self)]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView(==self)]|", options: [], metrics: nil, views: views))
     }
+    
+    func reloadOptionsView() {
+        
+        summary?.options.enumerated().forEach { option in
+            let view = option.element.view
+            
+            if option.offset == 1 {
+                // TODO: Set gradient
+            }
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(menuOptionTouchUpInside(_:)))
+            view.addGestureRecognizer(tap)
+            
+            scrollView.addSubview(view)
+        }
+        
+        //    _mainHeight = [self calculateHeightForOptions:_menuOptionsView];
+        //
+        //    [self reloadView];
+        //    [self textAnimation];
+    }
+    
+    func menuOptionTouchUpInside(_ gestureRecognizer: UITapGestureRecognizer) {
+        
+    }
+    
+//    
+//    - (void)menuOptionTouchUpInside:(UITapGestureRecognizer *)gesture  {
+//    
+//    if ([_delegate respondsToSelector:@selector(navigateToOptionFromIndexPath:)]) {
+//    
+//    NSInteger indexView = [_menuOptionsView indexOfObject:gesture.view];
+//    MenuOptionItem *item = [_menuOptionsExtended objectAtIndex:indexView];
+//    
+//    NSInteger indexOption = [_menuOptions indexOfObject:item];
+//    NSIndexPath *path = [NSIndexPath indexPathForItem:indexOption inSection:0];
+//    
+//    [_delegate navigateToOptionFromIndexPath:path];
+//    }
+//    }
 }
 
 extension SectionCollectionViewCell: UIScrollViewDelegate {
