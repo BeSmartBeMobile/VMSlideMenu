@@ -77,8 +77,3 @@ class TabCollectionViewCell: UICollectionViewCell {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-margin-[imageView]-(>=margin)-[selectedIndicator(==indicatorHeight)]|", options: [], metrics: metrics, views: views))
     }
 }
-
-struct TabCollectionViewCellSummary {
-    let icon: UIImage
-    let selectionColor: UIColor?
-}

@@ -16,6 +16,8 @@ import Foundation
     lazy var tabsCollectionView: UICollectionView = {
         let tabLayout = UICollectionViewFlowLayout()
         tabLayout.scrollDirection = .horizontal
+        tabLayout.minimumLineSpacing = 0
+        tabLayout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: tabLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,10 +40,12 @@ import Foundation
     }()
     
     lazy var sectionsCollectionView: UICollectionView = {
-        let optionsLayout = UICollectionViewFlowLayout()
-        optionsLayout.scrollDirection = .horizontal
+        let sectionsLayout = UICollectionViewFlowLayout()
+        sectionsLayout.scrollDirection = .horizontal
+        sectionsLayout.minimumLineSpacing = 0
+        sectionsLayout.minimumInteritemSpacing = 0
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: optionsLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: sectionsLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -156,14 +160,6 @@ extension VMSlideMenuViewController: UICollectionViewDelegateFlowLayout {
             
             return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
         }
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
     }
 }
 

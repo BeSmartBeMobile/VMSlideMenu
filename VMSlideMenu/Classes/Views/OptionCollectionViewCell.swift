@@ -8,7 +8,13 @@
 
 import UIKit
 
-class OptionView: UIView {
+class OptionCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: Static properties
+    
+    static let identifier = "OptionCollectionViewCell"
+    
+    // MARK: Properties
 
     lazy var backgroundImageView: UIImageView = {
         
@@ -45,7 +51,7 @@ class OptionView: UIView {
         return label
     }()
     
-    var summary: OptionViewSummary? {
+    var summary: OptionCollectionViewCellSummary? {
         didSet {
             guard let summary = summary else { return }
             
@@ -85,12 +91,4 @@ class OptionView: UIView {
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }
 
-}
-
-struct OptionViewSummary {
-    let backgroundImage: UIImage
-    let title: String
-    let font: UIFont?
-    let scale: CGFloat
-    let gradientAlpha: CGFloat
 }

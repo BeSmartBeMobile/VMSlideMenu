@@ -23,7 +23,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 ]),
             MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.red, options: [
                 MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
-                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") })
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") }),
+                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") }),
+                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") }),
+                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") }),
+                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") }),
+                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") })
                 ]),
             MenuTab(icon: #imageLiteral(resourceName: "tab3"), selectionColor: UIColor.white, options: [
                 MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") }),
