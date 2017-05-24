@@ -11,5 +11,5 @@ import Foundation
 struct SectionCollectionViewCellSummary {
     let options: [MenuOption]
     let viewHeight: CGFloat = 156
-    let baseRowsNumber = 3
+    let baseRowsNumber = 2
 }

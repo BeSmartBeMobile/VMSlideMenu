@@ -17,7 +17,7 @@ class SectionCollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     
     lazy var optionsCollectionView: UICollectionView = {
-        let optionsLayout = UICollectionViewFlowLayout()
+        let optionsLayout = SlideLayout()
         optionsLayout.scrollDirection = .vertical
         optionsLayout.minimumLineSpacing = 0
         optionsLayout.minimumInteritemSpacing = 0
@@ -27,7 +27,7 @@ class SectionCollectionViewCell: UICollectionViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isScrollEnabled = true
-        collectionView.isPagingEnabled = false
+        collectionView.isPagingEnabled = true
         
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -44,14 +44,19 @@ class SectionCollectionViewCell: UICollectionViewCell {
     var summary: SectionCollectionViewCellSummary? {
         didSet {
             
-//            guard let options = summary?.options else { return }
+            guard let options = summary?.options else { return }
             
-//            visibleOptions = options.map { option in
-//                return
-//            }
             
-//            optionsCollectionView.contentOffset = CGPoint(x: summary?.viewHeight ?? 0, y: 0)
-            optionsCollectionView.reloadData()
+            extendedOptions = options
+            
+            if numberOfOptions > 1 {
+                extendedOptions.append(options.first!)
+                extendedOptions.insert(options.last!, at: 0)
+                optionsCollectionView.reloadData()
+                optionsCollectionView.contentOffset = CGPoint(x: 0, y: heightForRow(atIndex: 0))
+            } else {
+                optionsCollectionView.reloadData()
+            }
         }
     }
     
@@ -59,17 +64,30 @@ class SectionCollectionViewCell: UICollectionViewCell {
         return summary?.options.count ?? 0
     }
     
-    var visibleOptions: [MenuOption] = []
+    var extendedOptions: [MenuOption] = []
+    
+    var index: Int = 1 {
+        didSet {
+            
+        }
+    }
     
     var numberOfVisibleOptions: Int {
+        
+//        let sectionViewHeight = self.bounds.height
+//        
+//        guard let optionViewHeight = summary?.viewHeight,
+//            sectionViewHeight > optionViewHeight else { return 0 }
+//        
+//        let max = sectionViewHeight / optionViewHeight
         
         guard let baseRowsNumber = summary?.baseRowsNumber,
             numberOfOptions > 1 else {
             return numberOfOptions
         }
         
-        if numberOfOptions >= baseRowsNumber {
-            return baseRowsNumber
+        if numberOfOptions >= baseRowsNumber + 1 {
+            return baseRowsNumber + 1
         } else {
             return numberOfOptions
         }
@@ -100,21 +118,15 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Private
     
-//    fileprivate var topOptionIndex: Int {
-//        guard numberOfOptions > 0 else {
-//            return 0
-//        }
-//        
-//        return
-//    }
-    
     func heightForRow(atIndex index: Int) -> CGFloat {
         
         guard let viewHeight = summary?.viewHeight else { return 0 }
         
-        guard numberOfVisibleOptions > 1 else { return self.bounds.height }
+//        guard numberOfVisibleOptions > 1 else { return self.bounds.height }
+//        
+//        return index == 1 ? self.bounds.height - CGFloat(numberOfVisibleOptions - 1) * viewHeight : viewHeight
         
-        return index == 0 ? self.bounds.height - CGFloat(numberOfVisibleOptions - 1) * viewHeight + viewHeight : viewHeight
+        return viewHeight
     }
 }
 
@@ -129,12 +141,13 @@ extension SectionCollectionViewCell: UIScrollViewDelegate {
             
             print("Down")
             // Remove first
-            
+//            extendedOptions.shifted()
             // Insert last
             
         } else if offsetY == (summary?.viewHeight ?? 0) * 1 {
             
             print("Up")
+//            extendedOptions.shifted(withDistance: -1)
             
         }
     }
@@ -142,20 +155,21 @@ extension SectionCollectionViewCell: UIScrollViewDelegate {
 
 extension SectionCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        summary?.options[indexPath.row].action()
+        extendedOptions[indexPath.row].action()
+        optionsCollectionView.contentOffset = CGPoint(x: 0, y: heightForRow(atIndex: 0))
     }
 }
 
 extension SectionCollectionViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfVisibleOptions
+        return extendedOptions.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.identifier, for: indexPath) as! OptionCollectionViewCell
         
-        cell.summary = summary?.options[indexPath.row].summary
+        cell.summary = extendedOptions[indexPath.row].summary
         
         return cell
     }
@@ -164,7 +178,7 @@ extension SectionCollectionViewCell: UICollectionViewDataSource {
 extension SectionCollectionViewCell: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+        print("Size \(heightForRow(atIndex: indexPath.row))")
         return CGSize(width: collectionView.bounds.width, height: heightForRow(atIndex: indexPath.row))
     }
 }
