@@ -46,9 +46,8 @@ class SlideLayout: UICollectionViewFlowLayout {
         
         return super.layoutAttributesForElements(in: rect).flatMap { attributes in
             
-            return attributes.flatMap { attribute in
-                return layoutAttributesForItem(at: attribute.indexPath)
-            }
+            return attributes.filter { $0.representedElementKind == nil }
+                .flatMap { layoutAttributesForItem(at: $0.indexPath) }
         }
     }
     
@@ -60,9 +59,18 @@ class SlideLayout: UICollectionViewFlowLayout {
 
         if indexPath.row == 1 {
         
-            attributes.frame.size.height = self.collectionView?.contentOffset.y ?? 0
-            print(self.collectionView?.contentOffset.y ?? 0)
+            attributes.size.height = self.collectionView?.contentOffset.y ?? 0
+
+//            print(attributes)
         }
+        
+        
+//        if indexPath.row == 2 {
+//            
+//            guard let prevFrame = collectionView?.cellForItem(at: IndexPath(row: 1, section: indexPath.section))?.frame else { return nil }
+//            
+//            attributes.frame.origin.y = prevFrame.origin.y + prevFrame.height
+//        }
         
         return attributes
     }

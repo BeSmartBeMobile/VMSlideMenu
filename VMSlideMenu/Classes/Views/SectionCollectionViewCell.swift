@@ -21,6 +21,7 @@ class SectionCollectionViewCell: UICollectionViewCell {
         optionsLayout.scrollDirection = .vertical
         optionsLayout.minimumLineSpacing = 0
         optionsLayout.minimumInteritemSpacing = 0
+        optionsLayout.itemSize = CGSize(width: 375, height: 156)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: optionsLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -175,10 +176,10 @@ extension SectionCollectionViewCell: UICollectionViewDataSource {
     }
 }
 
-extension SectionCollectionViewCell: UICollectionViewDelegateFlowLayout {
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("Size \(heightForRow(atIndex: indexPath.row))")
-        return CGSize(width: collectionView.bounds.width, height: heightForRow(atIndex: indexPath.row))
-    }
-}
+//extension SectionCollectionViewCell: UICollectionViewDelegateFlowLayout {
+//    
+//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        print("Size \(heightForRow(atIndex: indexPath.row))")
+//        return CGSize(width: collectionView.bounds.width, height: heightForRow(atIndex: indexPath.row))
+//    }
+//}
