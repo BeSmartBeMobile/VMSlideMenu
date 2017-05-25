@@ -63,7 +63,7 @@
 		67697002E3835243F40ABA92ED409343 /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18346C82D017A21FF2D24B18D2A19F96 /* DSL.swift */; };
 		68655FA61ECED30500CE683E /* SectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA51ECED30500CE683E /* SectionCollectionViewCell.swift */; };
 		68655FA81ECED3AE00CE683E /* TabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA71ECED3AE00CE683E /* TabCollectionViewCell.swift */; };
-		68655FAA1ECF187100CE683E /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA91ECF187100CE683E /* OptionCollectionViewCell.swift */; };
+		68655FAA1ECF187100CE683E /* OptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68655FA91ECF187100CE683E /* OptionView.swift */; };
 		69DA8B003216466C60F029CBD79897F1 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA451463938AAC29772A9BA4A644712 /* UIImage+Compare.m */; };
 		6CDBA48C3A8621E4EE1DAFFE240F0D82 /* CwlCatchBadInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5AB00D217C687CB83AE825D8B15F32 /* CwlCatchBadInstruction.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
 		6E397D9FB11A47E48D70287D734B12B2 /* BeLessThan.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D049190E109365BF9BA6BF1409B7F /* BeLessThan.swift */; settings = {COMPILER_FLAGS = "-DPRODUCT_NAME=Nimble/Nimble"; }; };
@@ -129,8 +129,7 @@
 		C59CC0A31ECDEF03009C3669 /* MenuTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59CC0A21ECDEF03009C3669 /* MenuTab.swift */; };
 		C5FA4DB41ED491E500596A22 /* SectionCollectionViewCellSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA4DB31ED491E500596A22 /* SectionCollectionViewCellSummary.swift */; };
 		C5FA4DB61ED4921E00596A22 /* TabCollectionViewCellSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA4DB51ED4921E00596A22 /* TabCollectionViewCellSummary.swift */; };
-		C5FA4DB81ED4925500596A22 /* OptionCollectionViewCellSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA4DB71ED4925500596A22 /* OptionCollectionViewCellSummary.swift */; };
-		C5FA4DBA1ED56C3500596A22 /* SlideLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA4DB91ED56C3500596A22 /* SlideLayout.swift */; };
+		C5FA4DB81ED4925500596A22 /* OptionViewSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA4DB71ED4925500596A22 /* OptionViewSummary.swift */; };
 		C5FA4DBD1ED578F100596A22 /* Array+Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FA4DBC1ED578F100596A22 /* Array+Shift.swift */; };
 		C6732407A9778397E44F1AD8F9934F46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A150D46EA64BD8DEFF32F7A7268A3D3D /* Foundation.framework */; };
 		CAFA5E486BCE117A7D8C0FBF9DA6666B /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AEAF67D1F53BA3D6E6CA0121B5A90BA /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -291,7 +290,7 @@
 		659B8AB20AB174FEF5F231B933012D98 /* VMSlideMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VMSlideMenu-umbrella.h"; sourceTree = "<group>"; };
 		68655FA51ECED30500CE683E /* SectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionCollectionViewCell.swift; path = Views/SectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		68655FA71ECED3AE00CE683E /* TabCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabCollectionViewCell.swift; path = Views/TabCollectionViewCell.swift; sourceTree = "<group>"; };
-		68655FA91ECF187100CE683E /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionCollectionViewCell.swift; path = Views/OptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		68655FA91ECF187100CE683E /* OptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionView.swift; path = Views/OptionView.swift; sourceTree = "<group>"; };
 		68C2953A942F774F4EBD3FBA94996D98 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A75CD2BBED6DBFEC2C162C0CB9CA5FC /* XCTestObservationCenter+Register.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "XCTestObservationCenter+Register.m"; path = "Sources/NimbleObjectiveC/XCTestObservationCenter+Register.m"; sourceTree = "<group>"; };
 		6BEFA8E939B30B44140B05C2224B1DDF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -366,8 +365,7 @@
 		C59CC0A21ECDEF03009C3669 /* MenuTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTab.swift; path = Models/MenuTab.swift; sourceTree = "<group>"; };
 		C5FA4DB31ED491E500596A22 /* SectionCollectionViewCellSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SectionCollectionViewCellSummary.swift; path = Views/SectionCollectionViewCellSummary.swift; sourceTree = "<group>"; };
 		C5FA4DB51ED4921E00596A22 /* TabCollectionViewCellSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabCollectionViewCellSummary.swift; path = Views/TabCollectionViewCellSummary.swift; sourceTree = "<group>"; };
-		C5FA4DB71ED4925500596A22 /* OptionCollectionViewCellSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionCollectionViewCellSummary.swift; path = Views/OptionCollectionViewCellSummary.swift; sourceTree = "<group>"; };
-		C5FA4DB91ED56C3500596A22 /* SlideLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlideLayout.swift; path = Views/SlideLayout.swift; sourceTree = "<group>"; };
+		C5FA4DB71ED4925500596A22 /* OptionViewSummary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionViewSummary.swift; path = Views/OptionViewSummary.swift; sourceTree = "<group>"; };
 		C5FA4DBC1ED578F100596A22 /* Array+Shift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Array+Shift.swift"; path = "Utils/Array+Shift.swift"; sourceTree = "<group>"; };
 		CA570EBAAA31239A6305CFD1BA04587C /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Sources/Nimble/Expression.swift; sourceTree = "<group>"; };
 		CCDCED103BFD74EDA9864A6F526C685B /* BeCloseTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeCloseTo.swift; path = Sources/Nimble/Matchers/BeCloseTo.swift; sourceTree = "<group>"; };
@@ -619,9 +617,8 @@
 				C5FA4DB51ED4921E00596A22 /* TabCollectionViewCellSummary.swift */,
 				68655FA51ECED30500CE683E /* SectionCollectionViewCell.swift */,
 				C5FA4DB31ED491E500596A22 /* SectionCollectionViewCellSummary.swift */,
-				68655FA91ECF187100CE683E /* OptionCollectionViewCell.swift */,
-				C5FA4DB71ED4925500596A22 /* OptionCollectionViewCellSummary.swift */,
-				C5FA4DB91ED56C3500596A22 /* SlideLayout.swift */,
+				68655FA91ECF187100CE683E /* OptionView.swift */,
+				C5FA4DB71ED4925500596A22 /* OptionViewSummary.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1240,17 +1237,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68655FAA1ECF187100CE683E /* OptionCollectionViewCell.swift in Sources */,
+				68655FAA1ECF187100CE683E /* OptionView.swift in Sources */,
 				C59CC0A31ECDEF03009C3669 /* MenuTab.swift in Sources */,
 				C59CC0A11ECDE2F3009C3669 /* MenuOption.swift in Sources */,
 				C5FA4DB41ED491E500596A22 /* SectionCollectionViewCellSummary.swift in Sources */,
 				C5FA4DBD1ED578F100596A22 /* Array+Shift.swift in Sources */,
 				19B08AEB48E47BD97B5116CDE8CFB84E /* VMSlideMenuViewController.swift in Sources */,
 				68655FA81ECED3AE00CE683E /* TabCollectionViewCell.swift in Sources */,
-				C5FA4DB81ED4925500596A22 /* OptionCollectionViewCellSummary.swift in Sources */,
+				C5FA4DB81ED4925500596A22 /* OptionViewSummary.swift in Sources */,
 				C5FA4DB61ED4921E00596A22 /* TabCollectionViewCellSummary.swift in Sources */,
 				18EABDF3330B407009C486B613BDDDF7 /* VMSlideMenu-dummy.m in Sources */,
-				C5FA4DBA1ED56C3500596A22 /* SlideLayout.swift in Sources */,
 				68655FA61ECED30500CE683E /* SectionCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

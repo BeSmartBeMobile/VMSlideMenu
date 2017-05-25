@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct OptionCollectionViewCellSummary {
+struct OptionViewSummary {
     let backgroundImage: UIImage
     let title: String
     let font: UIFont?

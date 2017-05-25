@@ -24,8 +24,12 @@ import Foundation
 }
 
 extension MenuOption {
-
-    var summary: OptionCollectionViewCellSummary {
-        return OptionCollectionViewCellSummary(backgroundImage: self.image, title: self.name, font: UIFont.systemFont(ofSize: 50), scale: 0, gradientAlpha: 0)
+    var view: OptionView {
+        let view = OptionView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.summary = OptionViewSummary(backgroundImage: self.image, title: self.name, font: UIFont.systemFont(ofSize: 50), scale: 0.5, gradientAlpha: 0)
+        
+        return view
     }
 }

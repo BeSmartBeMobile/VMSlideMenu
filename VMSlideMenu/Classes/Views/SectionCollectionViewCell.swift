@@ -16,30 +16,16 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     // MARK: Properties
     
-    lazy var optionsCollectionView: UICollectionView = {
-        let optionsLayout = SlideLayout()
-        optionsLayout.scrollDirection = .vertical
-        optionsLayout.minimumLineSpacing = 0
-        optionsLayout.minimumInteritemSpacing = 0
-        optionsLayout.itemSize = CGSize(width: 375, height: 156)
+    lazy var scrollView: UIScrollView = {
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: optionsLayout)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.isScrollEnabled = true
-        collectionView.isPagingEnabled = true
+        let scrollView = UIScrollView(frame: .zero)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.delegate = self
+        scrollView.bounces = false
+        scrollView.scrollsToTop = false
+        scrollView.showsVerticalScrollIndicator = false
         
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.bounces = false
-        collectionView.allowsSelection = true
-        collectionView.allowsMultipleSelection = false
-        collectionView.autoresizesSubviews = true
-        collectionView.backgroundColor = UIColor.white
-        collectionView.register(OptionCollectionViewCell.self, forCellWithReuseIdentifier: OptionCollectionViewCell.identifier)
-        
-        return collectionView
+        return scrollView
     }()
     
     var summary: SectionCollectionViewCellSummary? {
@@ -47,17 +33,12 @@ class SectionCollectionViewCell: UICollectionViewCell {
             
             guard let options = summary?.options else { return }
             
-            
             extendedOptions = options
             
-            if numberOfOptions > 1 {
-                extendedOptions.append(options.first!)
-                extendedOptions.insert(options.last!, at: 0)
-                optionsCollectionView.reloadData()
-                optionsCollectionView.contentOffset = CGPoint(x: 0, y: heightForRow(atIndex: 0))
-            } else {
-                optionsCollectionView.reloadData()
-            }
+            extendedOptions.append(options.first!)
+            extendedOptions.insert(options.last!, at: 0)
+            
+            reloadOptionsViews()
         }
     }
     
@@ -67,33 +48,35 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     var extendedOptions: [MenuOption] = []
     
-    var index: Int = 1 {
-        didSet {
-            
+    var optionViews: [OptionView] = []
+    
+    var mainHeight: CGFloat {
+        
+        switch optionViews.count {
+        case 1:
+            return self.bounds.height
+        case 1...Int.max:
+            return self.bounds.height - CGFloat(optionViews.count - 1 - baseRowsNumber) * viewHeight
+        default:
+            return 0
         }
     }
     
-    var numberOfVisibleOptions: Int {
-        
-//        let sectionViewHeight = self.bounds.height
-//        
-//        guard let optionViewHeight = summary?.viewHeight,
-//            sectionViewHeight > optionViewHeight else { return 0 }
-//        
-//        let max = sectionViewHeight / optionViewHeight
-        
-        guard let baseRowsNumber = summary?.baseRowsNumber,
-            numberOfOptions > 1 else {
-            return numberOfOptions
-        }
-        
-        if numberOfOptions >= baseRowsNumber + 1 {
-            return baseRowsNumber + 1
-        } else {
-            return numberOfOptions
-        }
+    var baseRowsNumber: Int {
+        return summary?.baseRowsNumber ?? 2
     }
     
+    var viewHeight: CGFloat {
+        return summary?.viewHeight ?? 56
+    }
+    
+    var firstHeightConstraint: NSLayoutConstraint?
+    var lastHeightConstraint: NSLayoutConstraint?
+    var mainHeightConstraint: NSLayoutConstraint?
+    var viewHeightConstraint: NSLayoutConstraint?
+    
+    private let duration = 0.5
+
     // MARK: - Initialization
 
     override init(frame: CGRect) {
@@ -108,26 +91,216 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     func initializeView() {
         
-        addSubview(optionsCollectionView)
+        addSubview(scrollView)
+        scrollView.contentOffset = CGPoint(x: 0, y: viewHeight)
         
         // Constraints
-        let views: [String : Any] = ["self": self, "optionsCollectionView": optionsCollectionView]
+        let views: [String : Any] = ["self": self, "scrollView": scrollView]
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[optionsCollectionView(==self)]|", options: [], metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[optionsCollectionView(==self)]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView(==self)]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView(==self)]|", options: [], metrics: nil, views: views))
     }
     
     // MARK: - Private
     
-    func heightForRow(atIndex index: Int) -> CGFloat {
+    func reloadView() {
+        scrollView.removeConstraints(scrollView.constraints)
         
-        guard let viewHeight = summary?.viewHeight else { return 0 }
+        var views: [String : Any] = ["self": self, "scrollView": scrollView]
+        let metrics = ["mainHeight": mainHeight, "viewHeight": viewHeight]
+        var verticalConstraint = "V:|"
         
-//        guard numberOfVisibleOptions > 1 else { return self.bounds.height }
-//        
-//        return index == 1 ? self.bounds.height - CGFloat(numberOfVisibleOptions - 1) * viewHeight : viewHeight
+        optionViews.enumerated().forEach { index, optionView in
+            
+            let keyConstraint = String(format: "menuOptionView_%ld", index)
+            views[keyConstraint] = optionView
+            
+            scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: String(format: "H:|[%@(==scrollView)]|", keyConstraint),
+                                                                     options: [],
+                                                                     metrics: metrics,
+                                                                     views: views))
+            
+            switch index {
+                
+            case 0:
+                verticalConstraint.append(String(format: "[%@]", keyConstraint))
+                firstHeightConstraint = NSLayoutConstraint(item: optionView,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: viewHeight)
+                
+                scrollView.addConstraint(firstHeightConstraint!)
+                
+            case 1:
+                verticalConstraint.append(String(format: "[%@]", keyConstraint))
+                mainHeightConstraint = NSLayoutConstraint(item: optionView,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: mainHeight)
+                
+                scrollView.addConstraint(mainHeightConstraint!)
+                
+            case 2:
+                verticalConstraint.append(String(format: "[%@]", keyConstraint))
+                viewHeightConstraint = NSLayoutConstraint(item: optionView,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: viewHeight)
+                
+                scrollView.addConstraint(viewHeightConstraint!)
+                
+            case extendedOptions.count - 1:
+                verticalConstraint.append(String(format: "[%@]", keyConstraint))
+                lastHeightConstraint = NSLayoutConstraint(item: optionView,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1,
+                                                           constant: viewHeight)
+                
+                scrollView.addConstraint(lastHeightConstraint!)
+                
+            default:
+                verticalConstraint.append(String(format: "[%@(==viewHeight)]", keyConstraint))
+            }
+        }
         
-        return viewHeight
+        verticalConstraint.append("|")
+        
+        scrollView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: verticalConstraint,
+                                                                 options: [],
+                                                                 metrics: metrics,
+                                                                 views: views))
+        
+        scrollView.contentOffset = CGPoint(x: 0, y: viewHeight)
+        scrollView.isScrollEnabled = true
+    }
+    
+    func upAnimation() {
+        
+        UIView.animate(withDuration: duration, animations: {
+            
+            self.isUserInteractionEnabled = false
+            self.scrollView.isScrollEnabled = false
+            
+            self.firstHeightConstraint?.constant = self.viewHeight
+            self.mainHeightConstraint?.constant = self.viewHeight
+            self.viewHeightConstraint?.constant = self.mainHeight
+            self.lastHeightConstraint?.constant = self.viewHeight
+            
+            self.optionViews.enumerated().forEach { index, optionView in
+                
+                if index == 1 {
+                    optionView.titleScale = 0.5
+                } else if index == 2 {
+                    optionView.titleScale = 2
+                } else {
+//                    optionView.titleScale = 1
+                }
+            }
+            
+            self.layoutIfNeeded()
+            
+        }) { finished in
+            if finished {
+                self.inifiniteScrollMenuOption()
+                self.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
+    func downAnimation() {
+        
+        UIView.animate(withDuration: duration, animations: {
+            
+            self.isUserInteractionEnabled = false
+            self.scrollView.isScrollEnabled = false
+            
+            self.firstHeightConstraint?.constant = self.mainHeight
+            self.mainHeightConstraint?.constant = self.viewHeight
+            self.viewHeightConstraint?.constant = self.viewHeight
+            self.lastHeightConstraint?.constant = self.viewHeight
+            
+            self.optionViews.enumerated().forEach { index, optionView in
+                
+                if index == 0 {
+                    optionView.titleScale = 2
+                } else if index == 1 {
+                    optionView.titleScale = 0.5
+                } else {
+//                    optionView.titleScale = 1
+                }
+            }
+            
+            self.layoutIfNeeded()
+            
+        }) { finished in
+            if finished {
+                self.inifiniteScrollMenuOption()
+                self.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
+    func inifiniteScrollMenuOption() {
+        
+        scrollView.subviews.forEach { view in
+
+            view.removeFromSuperview()
+        }
+        
+        if scrollView.contentOffset.y == 0 {
+            extendedOptions.removeLast()
+            extendedOptions.insert(extendedOptions[extendedOptions.count-2], at: 0)
+        } else {
+            extendedOptions.removeFirst()
+            extendedOptions.append(extendedOptions[1])
+        }
+        
+        reloadOptionsViews()
+    }
+    
+    func reloadOptionsViews() {
+        
+        optionViews.removeAll()
+        extendedOptions.enumerated().forEach { index, option in
+            
+            let optionView = option.view
+            
+            if index == 1 {
+                optionView.titleScale = 2
+            } else {
+                optionView.titleScale = 1
+            }
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(optionTouchUpInside(_:)))
+            
+            optionView.addGestureRecognizer(tap)
+            
+            scrollView.addSubview(optionView)
+            optionViews.append(optionView)
+        }
+        
+        reloadView()
+        // textAnimation
+    }
+    
+    func optionTouchUpInside(_ gestureRecognizer: UITapGestureRecognizer) {
+        
+        guard let optionView = gestureRecognizer.view as? OptionView,
+            let index = optionViews.index(of: optionView) else { return }
+        
+        extendedOptions[index].action()
     }
 }
 
@@ -135,51 +308,16 @@ extension SectionCollectionViewCell: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        guard scrollView == optionsCollectionView else { return }
+        guard scrollView == self.scrollView else { return }
         
         let offsetY = scrollView.contentOffset.y
         if offsetY == 0 {
             
-            print("Down")
-            // Remove first
-//            extendedOptions.shifted()
-            // Insert last
+            downAnimation()
             
-        } else if offsetY == (summary?.viewHeight ?? 0) * 1 {
+        } else if offsetY == (summary?.viewHeight ?? 0) * 2 {
             
-            print("Up")
-//            extendedOptions.shifted(withDistance: -1)
-            
+            upAnimation()
         }
     }
 }
-
-extension SectionCollectionViewCell: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        extendedOptions[indexPath.row].action()
-        optionsCollectionView.contentOffset = CGPoint(x: 0, y: heightForRow(atIndex: 0))
-    }
-}
-
-extension SectionCollectionViewCell: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return extendedOptions.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionCollectionViewCell.identifier, for: indexPath) as! OptionCollectionViewCell
-        
-        cell.summary = extendedOptions[indexPath.row].summary
-        
-        return cell
-    }
-}
-
-//extension SectionCollectionViewCell: UICollectionViewDelegateFlowLayout {
-//    
-//    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        print("Size \(heightForRow(atIndex: indexPath.row))")
-//        return CGSize(width: collectionView.bounds.width, height: heightForRow(atIndex: indexPath.row))
-//    }
-//}

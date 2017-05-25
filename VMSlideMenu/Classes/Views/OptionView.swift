@@ -8,11 +8,7 @@
 
 import UIKit
 
-class OptionCollectionViewCell: UICollectionViewCell {
-    
-    // MARK: Static properties
-    
-    static let identifier = "OptionCollectionViewCell"
+class OptionView: UIView {
     
     // MARK: Properties
 
@@ -38,8 +34,8 @@ class OptionCollectionViewCell: UICollectionViewCell {
         label.backgroundColor = UIColor.clear
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.adjustsFontSizeToFitWidth = true
         label.lineBreakMode = .byWordWrapping
+//        label.adjustsFontSizeToFitWidth = true
         label.shadowColor = UIColor.black // TODO: Customize?
         label.shadowOffset = CGSize(width: 0, height: 0)
         label.layer.shadowOpacity = 0.5
@@ -47,18 +43,24 @@ class OptionCollectionViewCell: UICollectionViewCell {
         label.layer.masksToBounds = false
         label.layer.shouldRasterize = true
         
-        
         return label
     }()
     
-    var summary: OptionCollectionViewCellSummary? {
+    var titleScale: CGFloat = 100 {
+        didSet {
+            titleLabel.transform = titleLabel.transform.scaledBy(x: titleScale, y: titleScale)
+        }
+    }
+    
+    var summary: OptionViewSummary? {
         didSet {
             guard let summary = summary else { return }
             
             self.backgroundImageView.image = summary.backgroundImage
             self.titleLabel.text = summary.title
             self.titleLabel.font = summary.font
-//            self.titleLabel.transform = titleLabel.transform.scaledBy(x: summary.scale, y: summary.scale)
+            
+//            self.titleScale = summary.scale
             // TODO: set alpha
         }
     }
@@ -87,6 +89,7 @@ class OptionCollectionViewCell: UICollectionViewCell {
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[backgroundImageView]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[backgroundImageView]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[titleLabel]-margin-|", options: [], metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-margin-[titleLabel]-margin-|", options: [], metrics: metrics, views: views))
         
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }

@@ -31,14 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") })
                 ]),
             MenuTab(icon: #imageLiteral(resourceName: "tab4"), selectionColor: UIColor.green, options: [
+                MenuOption(withName: "Opcion 1 superlarga probando titulo halamadriddd", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") }),
+                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") }),
+                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") })/*,
                 MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
                 MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") }),
                 MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") }),
-                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") }),
-                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1 pulsada") }),
-                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2 pulsada") }),
-                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3 pulsada") }),
-                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") })
+                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4 pulsada") })*/
                 ])
         ]
         
