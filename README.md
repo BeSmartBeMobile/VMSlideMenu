@@ -1,7 +1,7 @@
 # VMSlideMenu
 
 [![License](https://img.shields.io/badge/license-VECTOR-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/blob/master/LICENSE)
-[![Versión de pod](https://img.shields.io/badge/pod-1.0.0-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/commits/1.0.0)
+[![Versión de pod](https://img.shields.io/badge/pod-1.0.1-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/commits/1.0.1)
 
 
 ## Example
