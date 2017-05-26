@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VMSlideMenu'
-  s.version          = '0.1.0'
+  s.version          = '1.0.1'
   s.summary          = 'VMSlideMenu allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows.'
 
   s.description      = <<-DESC
