@@ -18,7 +18,7 @@ class SectionCollectionViewCell: UICollectionViewCell {
     
     lazy var scrollView: UIScrollView = {
         
-        let scrollView = UIScrollView(frame: .zero)
+        let scrollView = UIScrollView(frame: self.bounds)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.delegate = self
         scrollView.bounces = false
@@ -42,10 +42,6 @@ class SectionCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var numberOfOptions: Int {
-        return summary?.options.count ?? 0
-    }
-    
     var extendedOptions: [MenuOption] = []
     
     var optionViews: [OptionView] = []
@@ -60,6 +56,10 @@ class SectionCollectionViewCell: UICollectionViewCell {
         default:
             return 0
         }
+    }
+    
+    var fontSize: CGFloat {
+        return summary?.fontSize ?? 36
     }
     
     var baseRowsNumber: Int {
@@ -200,12 +200,12 @@ class SectionCollectionViewCell: UICollectionViewCell {
             
             self.optionViews.enumerated().forEach { index, optionView in
                 
-                if index == 1 {
-                    optionView.titleScale = 0.5
-                } else if index == 2 {
-                    optionView.titleScale = 2
+                if index == 2 {
+                    optionView.titleScale = 1.9
+                    optionView.gradientAlpha = 0
                 } else {
-//                    optionView.titleScale = 1
+                    optionView.titleScale = 1
+                    optionView.gradientAlpha = 1
                 }
             }
             
@@ -235,10 +235,13 @@ class SectionCollectionViewCell: UICollectionViewCell {
                 
                 if index == 0 {
                     optionView.titleScale = 2
+                    optionView.gradientAlpha = 0
                 } else if index == 1 {
                     optionView.titleScale = 0.5
+                    optionView.gradientAlpha = 1
                 } else {
-//                    optionView.titleScale = 1
+                    optionView.titleScale = 1
+                    optionView.gradientAlpha = 1
                 }
             }
             
@@ -276,11 +279,12 @@ class SectionCollectionViewCell: UICollectionViewCell {
         extendedOptions.enumerated().forEach { index, option in
             
             let optionView = option.view
+            optionView.titleLabel.font = UIFont.systemFont(ofSize: fontSize / 2)
             
             if index == 1 {
-                optionView.titleScale = 2
+                optionView.gradientAlpha = 0
             } else {
-                optionView.titleScale = 1
+                optionView.gradientAlpha = 1
             }
             
             let tap = UITapGestureRecognizer(target: self, action: #selector(optionTouchUpInside(_:)))
@@ -292,7 +296,18 @@ class SectionCollectionViewCell: UICollectionViewCell {
         }
         
         reloadView()
-        // textAnimation
+        textAnimation()
+    }
+    
+    func textAnimation() {
+    
+        optionViews.enumerated().forEach { index, view in
+            if (index == 1) {
+                view.titleLabel.font = UIFont.systemFont(ofSize: fontSize)
+            } else {
+                view.titleLabel.font = UIFont.systemFont(ofSize: fontSize / 2)
+            }
+        }
     }
     
     func optionTouchUpInside(_ gestureRecognizer: UITapGestureRecognizer) {
@@ -315,7 +330,7 @@ extension SectionCollectionViewCell: UIScrollViewDelegate {
             
             downAnimation()
             
-        } else if offsetY == (summary?.viewHeight ?? 0) * 2 {
+        } else if offsetY == (viewHeight) * 2 {
             
             upAnimation()
         }

@@ -27,8 +27,7 @@ extension MenuOption {
     var view: OptionView {
         let view = OptionView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.summary = OptionViewSummary(backgroundImage: self.image, title: self.name, font: UIFont.systemFont(ofSize: 50), scale: 0.5, gradientAlpha: 0)
+        view.summary = OptionViewSummary(backgroundImage: self.image, title: self.name)
         
         return view
     }

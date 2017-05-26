@@ -22,10 +22,13 @@ class OptionView: UIView {
         return imageView
     }()
     
-//    lazy var gradientView: GradientView = { // TODO: Gradient view
-//        
-//        
-//    }()
+    lazy var gradientView: GradientView = {
+        let gradientView = GradientView(frame: .zero)
+        
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return gradientView
+    }()
     
     lazy var titleLabel: UILabel = {
         
@@ -33,10 +36,10 @@ class OptionView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = UIColor.clear
         label.textAlignment = .center
+        label.textColor = UIColor.white
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-//        label.adjustsFontSizeToFitWidth = true
-        label.shadowColor = UIColor.black // TODO: Customize?
+        label.shadowColor = UIColor.black
         label.shadowOffset = CGSize(width: 0, height: 0)
         label.layer.shadowOpacity = 0.5
         label.layer.shadowRadius = 4
@@ -46,9 +49,15 @@ class OptionView: UIView {
         return label
     }()
     
-    var titleScale: CGFloat = 100 {
+    var titleScale: CGFloat = 1 {
         didSet {
             titleLabel.transform = titleLabel.transform.scaledBy(x: titleScale, y: titleScale)
+        }
+    }
+    
+    var gradientAlpha: CGFloat = 1 {
+        didSet {
+            gradientView.alpha = gradientAlpha
         }
     }
     
@@ -58,10 +67,6 @@ class OptionView: UIView {
             
             self.backgroundImageView.image = summary.backgroundImage
             self.titleLabel.text = summary.title
-            self.titleLabel.font = summary.font
-            
-//            self.titleScale = summary.scale
-            // TODO: set alpha
         }
     }
     
@@ -80,16 +85,19 @@ class OptionView: UIView {
     func initializeView() {
         
         addSubview(backgroundImageView)
+        addSubview(gradientView)
         addSubview(titleLabel)
         
         // Constraints
-        let views: [String : Any] = ["titleLabel": titleLabel, "backgroundImageView": backgroundImageView]
+        let views: [String : Any] = ["titleLabel": titleLabel, "backgroundImageView": backgroundImageView, "gradientView": gradientView]
         let metrics = ["margin": 20]
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[backgroundImageView]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[backgroundImageView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[gradientView]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[gradientView]|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-margin-[titleLabel]-margin-|", options: [], metrics: metrics, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-margin-[titleLabel]-margin-|", options: [], metrics: metrics, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[titleLabel]|", options: [], metrics: metrics, views: views))
         
         addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }
