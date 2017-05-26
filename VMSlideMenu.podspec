@@ -7,11 +7,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/Jorge Lucena/VMSlideMenu'
+  s.homepage         = 'https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Jorge Lucena' => 'jmlucena@vectoritcgroup.com' }
-  s.source           = { :git => 'https://github.com/Jorge Lucena/VMSlideMenu.git', :tag => s.version.to_s }
+  s.authors           = { 'José María Ila' => 'jmila@vectoritcgroup.com', 'Jorge Lucena' => 'jmlucena@vectoritcgroup.com' }
+  s.source           = { :git => 'https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'

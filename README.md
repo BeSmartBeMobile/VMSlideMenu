@@ -1,15 +1,18 @@
 # VMSlideMenu
 
-[![CI Status](http://img.shields.io/travis/Jorge Lucena/VMSlideMenu.svg?style=flat)](https://travis-ci.org/Jorge Lucena/VMSlideMenu)
-[![Version](https://img.shields.io/cocoapods/v/VMSlideMenu.svg?style=flat)](http://cocoapods.org/pods/VMSlideMenu)
-[![License](https://img.shields.io/cocoapods/l/VMSlideMenu.svg?style=flat)](http://cocoapods.org/pods/VMSlideMenu)
-[![Platform](https://img.shields.io/cocoapods/p/VMSlideMenu.svg?style=flat)](http://cocoapods.org/pods/VMSlideMenu)
+[![License](https://img.shields.io/badge/license-VECTOR-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/blob/master/LICENSE)
+[![Versión de pod](https://img.shields.io/badge/pod-1.0.0-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/commits/1.0.0)
+
 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+- Swift 3+
+- iOS 9+ 
+
 
 ## Installation
 
@@ -20,9 +23,45 @@ it, simply add the following line to your Podfile:
 pod "VMSlideMenu"
 ```
 
-## Author
+## Use
 
-Jorge Lucena, jmlucena@vectoritcgroup.com
+First, import the library:
+```
+import VMSlideMenu
+```
+
+Then create the tabs and options hierarchy:
+
+```
+let tabs = [
+            MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: [
+                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1.1 pulsada") })
+                ]),
+            MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.white, options: [
+                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 2.1 pulsada") }),
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2.2 pulsada") })
+                ]),
+            MenuTab(icon: #imageLiteral(resourceName: "tab4"), selectionColor: UIColor.green, options: [
+                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 3.1 pulsada") }),
+                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 3.2 pulsada") }),
+                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3.3 pulsada") }),
+                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4.4 pulsada") })
+                ])
+        ]
+```
+
+Finally create your VSMenuViewController and present it where you need:
+
+```
+let menuViewController = VMSlideMenuViewController(withTabs: tabs)
+menuViewController.backgroundColor = UIColor.blue
+```
+
+## Authors
+
+José María Ila, jmila@vectoritcgroup.com (Original code)
+
+Jorge Lucena, jmlucena@vectoritcgroup.com (Swift translation)
 
 ## License
 
