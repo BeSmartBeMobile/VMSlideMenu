@@ -1,8 +1,11 @@
 # VMSlideMenu
 
-[![License](https://img.shields.io/badge/license-VECTOR-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE)
-[![Versión de pod](https://img.shields.io/badge/pod-1.0.3-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.3)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE)
+[![Versión de pod](https://img.shields.io/badge/pod-1.0.4-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.4)
 
+![VMSlideMenu](VMSlideMenu.gif)
+
+VMSlideMenu allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows, and customize colors.
 
 ## Example
 
@@ -20,19 +23,20 @@ VMSlideMenu is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "VMSlideMenu"
+pod 'VMSlideMenu'
 ```
 
 ## Use
 
 First, import the library:
-```
+
+```swift
 import VMSlideMenu
 ```
 
 Then create the tabs and options hierarchy:
 
-```
+```swift
 let tabs = [
             MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: [
                 MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1.1 pulsada") })
@@ -52,7 +56,7 @@ let tabs = [
 
 Finally create your VSMenuViewController and present it where you need:
 
-```
+```swift
 let menuViewController = VMSlideMenuViewController(withTabs: tabs)
 menuViewController.backgroundColor = UIColor.blue
 ```
@@ -65,4 +69,7 @@ Jorge Lucena, jmlucena@vectoritcgroup.com (Swift translation, framework packagin
 
 ## License
 
-VMSlideMenu is available under the MIT license. See the LICENSE file for more info.
+VMSlideMenu is available under the MIT license. See the [LICENSE](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE) file for more info.
+
+## Further Information
+For more information on the project, please write to [vectormobility@gmail.com](mailto://vectormobility@gmail.com).

@@ -9,6 +9,7 @@
 import Foundation
 
 @objc public class MenuTab: NSObject {
+    
     let icon: UIImage
     let selectionColor: UIColor?
     let options: [MenuOption]
