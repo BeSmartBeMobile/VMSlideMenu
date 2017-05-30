@@ -1,11 +1,17 @@
 
 import Foundation
 
-@objc public class VMSlideMenuViewController: UIViewController {
+@objc open class VMSlideMenuViewController: UIViewController {
     
     // MARK: Properties
     
-    let tabs: [MenuTab]
+    public var tabs: [MenuTab] = [] {
+        didSet {
+            tabsCollectionView.reloadData()
+            sectionsCollectionView.reloadData()
+            if !tabs.isEmpty { tabsCollectionView.selectItem(at: IndexPath(item: 0, section:0), animated: true, scrollPosition: .left) }
+        }
+    }
     
     public var backgroundColor: UIColor? {
         didSet {
@@ -35,7 +41,7 @@ import Foundation
         collectionView.autoresizesSubviews = true
         collectionView.backgroundColor = self.backgroundColor
         collectionView.register(TabCollectionViewCell.self, forCellWithReuseIdentifier: TabCollectionViewCell.identifier)
-
+        
         return collectionView
     }()
     
@@ -68,13 +74,19 @@ import Foundation
     
     
     // MARK: - Initialization
- 
+    
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     public init(withTabs tabs: [MenuTab], andBackgroundColor backgroundColor: UIColor? = nil) {
         self.tabs = tabs
         self.backgroundColor = backgroundColor
         
         super.init(nibName: nil, bundle: nil)
     }
+    
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -83,7 +95,7 @@ import Foundation
     
     // MARK: Lifecycle
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         configureView()
     }
     
@@ -91,11 +103,11 @@ import Foundation
     func configureView() {
         
         navigationController?.hidesBarsOnSwipe = false
-    
+        
         view.addSubview(tabsCollectionView)
         view.addSubview(sectionsCollectionView)
         
-        tabsCollectionView.selectItem(at: IndexPath(item: 0, section:0), animated: true, scrollPosition: .left)
+        if !tabs.isEmpty { tabsCollectionView.selectItem(at: IndexPath(item: 0, section:0), animated: true, scrollPosition: .left) }
         
         // Constraints
         let views = ["tabsCollectionView": tabsCollectionView, "sectionsCollectionView": sectionsCollectionView]
@@ -148,12 +160,12 @@ extension VMSlideMenuViewController: UICollectionViewDataSource {
 }
 
 extension VMSlideMenuViewController: UICollectionViewDelegateFlowLayout {
-
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == tabsCollectionView {
             
             let width = collectionView.bounds.width / CGFloat(tabs.count)
-        
+            
             return CGSize(width: width, height: height)
             
         } else {
