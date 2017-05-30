@@ -1,7 +1,7 @@
 # VMSlideMenu
 
 [![License](https://img.shields.io/badge/license-VECTOR-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE)
-[![Versión de pod](https://img.shields.io/badge/pod-1.0.2-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.2)
+[![Versión de pod](https://img.shields.io/badge/pod-1.0.3-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.3)
 
 
 ## Example
