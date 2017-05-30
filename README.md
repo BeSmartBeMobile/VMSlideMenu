@@ -14,7 +14,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Requirements
 
 - Swift 3+
-- iOS 9+ 
+- iOS 9+
 
 
 ## Installation
@@ -54,7 +54,7 @@ let tabs = [
         ]
 ```
 
-Finally create your VSMenuViewController and present it where you need:
+Finally create your VMSlideMenuViewController and present it where you need:
 
 ```swift
 let menuViewController = VMSlideMenuViewController(withTabs: tabs)
