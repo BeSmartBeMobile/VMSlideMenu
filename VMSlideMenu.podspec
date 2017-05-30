@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
   s.name             = 'VMSlideMenu'
-  s.version          = '1.0.1'
-  s.summary          = 'VMSlideMenu allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows.'
+  s.version          = '1.0.2'
+  s.summary          = 'VMSlideMenu allows add a beautyful and intuitive menu to your app.'
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+VMSlideMenu allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows, and customize colors.
                        DESC
 
   s.homepage         = 'https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu'
