@@ -1,7 +1,7 @@
 # VMSlideMenu
 
-[![License](https://img.shields.io/badge/license-VECTOR-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/blob/master/LICENSE)
-[![Versión de pod](https://img.shields.io/badge/pod-1.0.1-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMRemoteConfig/commits/1.0.1)
+[![License](https://img.shields.io/badge/license-VECTOR-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE)
+[![Versión de pod](https://img.shields.io/badge/pod-1.0.2-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.2)
 
 
 ## Example
@@ -59,9 +59,9 @@ menuViewController.backgroundColor = UIColor.blue
 
 ## Authors
 
-José María Ila, jmila@vectoritcgroup.com (Original code)
+José María Ila, jmila@vectoritcgroup.com (Original Objective-C code)
 
-Jorge Lucena, jmlucena@vectoritcgroup.com (Swift translation)
+Jorge Lucena, jmlucena@vectoritcgroup.com (Swift translation, framework packaging)
 
 ## License
 
