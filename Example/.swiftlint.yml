@@ -1,0 +1,21 @@
+disabled_rules: # rule identifiers to exclude from running
+  - line_length
+  - trailing_whitespace
+  - valid_docs
+  - todo
+  - function_parameter_count
+  - unused_optional_binding
+  - large_tuple
+  - function_body_length
+  
+included: # paths to include during linting. `--path` is ignored if present. takes precendence over `excluded`.
+  - ../
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+
+variable_name:
+  min_length: 2
+  max_length: 50
+type_name:
+  min_length: 2
+  max_length: 50
