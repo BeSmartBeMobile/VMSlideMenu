@@ -1,6 +1,0 @@
-framework module Pods_VMSlideMenu_Tests {
-  umbrella header "Pods-VMSlideMenu_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

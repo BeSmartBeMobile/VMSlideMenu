@@ -1,14 +1,8 @@
 use_frameworks!
 
 target 'VMSlideMenu_Example' do
-  pod 'VMSlideMenu', :path => '../'
-
-  target 'VMSlideMenu_Tests' do
-    inherit! :search_paths
-
-    pod 'Quick', '~> 1.0.0'
-  pod 'Nimble', '~> 5.1.1'
-  pod 'FBSnapshotTestCase'
-  pod 'Nimble-Snapshots'
-  end
+    
+    pod 'VMSlideMenu', :path => '../'
+    pod 'SwiftLint'
+    
 end
