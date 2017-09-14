@@ -3,9 +3,9 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE)
 [![Versión de pod](https://img.shields.io/badge/pod-1.0.5-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.5)
 
-![VMSlideMenu](VMSlideMenu.gif)
+![VMSlideMenu](Documentation/VMSlideMenu.gif)
 
-VMSlideMenu allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows, and customize colors.
+`VMSlideMenu` allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows, and customize colors.
 
 ## Example
 
@@ -14,12 +14,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Requirements
 
 - Swift 3+
-- iOS 9+ 
+- iOS 9+
 
 
 ## Installation
 
-VMSlideMenu is available through [CocoaPods](http://cocoapods.org). To install
+`VMSlideMenu` is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
@@ -98,7 +98,7 @@ let tabs = [
 ]
 ```
 
-Finally create your VSMenuViewController and present it where you need:
+Finally create your `VMSlideMenuViewController` and present it where you need:
 
 ```swift
 let menuViewController = VMSlideMenuViewController(withTabs: tabs)
@@ -116,4 +116,4 @@ Jorge Lucena, jmlucena@vectoritcgroup.com (Swift translation, framework packagin
 VMSlideMenu is available under the MIT license. See the [LICENSE](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE) file for more info.
 
 ## Further Information
-For more information on the project, please write to [vectormobility@gmail.com](mailto://vectormobility@gmail.com).
+For more information on the project, please write to vectormobility@gmail.com

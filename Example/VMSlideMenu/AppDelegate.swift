@@ -67,6 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                MenuOption(withName: "Opcion 4",
                                           image: #imageLiteral(resourceName: "option4"),
                                           action: { print("opción 4.4 pulsada") })
+
                 ])
         ]
 
