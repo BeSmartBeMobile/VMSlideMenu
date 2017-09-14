@@ -1,7 +1,7 @@
 # VMSlideMenu
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/blob/master/LICENSE)
-[![Versión de pod](https://img.shields.io/badge/pod-1.0.4-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.4)
+[![Versión de pod](https://img.shields.io/badge/pod-1.0.5-green.svg)](https://gitlab.vectoritcgroup.com/ios-modules/VMSlideMenu/commits/1.0.5)
 
 ![VMSlideMenu](VMSlideMenu.gif)
 
@@ -38,20 +38,64 @@ Then create the tabs and options hierarchy:
 
 ```swift
 let tabs = [
-            MenuTab(icon: #imageLiteral(resourceName: "tab1"), selectionColor: UIColor.orange, options: [
-                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 1.1 pulsada") })
-                ]),
-            MenuTab(icon: #imageLiteral(resourceName: "tab2"), selectionColor: UIColor.white, options: [
-                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 2.1 pulsada") }),
-                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 2.2 pulsada") })
-                ]),
-            MenuTab(icon: #imageLiteral(resourceName: "tab4"), selectionColor: UIColor.green, options: [
-                MenuOption(withName: "Opcion 1", image: #imageLiteral(resourceName: "option1"), action: { print("opción 3.1 pulsada") }),
-                MenuOption(withName: "Opcion 2", image: #imageLiteral(resourceName: "option2"), action: { print("opción 3.2 pulsada") }),
-                MenuOption(withName: "Opcion 3", image: #imageLiteral(resourceName: "option3"), action: { print("opción 3.3 pulsada") }),
-                MenuOption(withName: "Opcion 4", image: #imageLiteral(resourceName: "option4"), action: { print("opción 4.4 pulsada") })
-                ])
-        ]
+    MenuTab(icon: #imageLiteral(resourceName: "tab1"),
+            selectionColor: UIColor.orange,
+            options: [ MenuOption(withName: "Opcion 1",
+            image: #imageLiteral(resourceName: "option1"),
+            action: { print("opción 1.1 pulsada") })
+    ]),
+
+    MenuTab(icon: #imageLiteral(resourceName: "tab2"),
+        selectionColor: UIColor.white,
+        options: [
+
+        MenuOption(withName: "Opcion 1",
+            image: #imageLiteral(resourceName: "option1"),
+            action: { print("opción 2.1 pulsada") }),
+
+        MenuOption(withName: "Opcion 2",
+            image: #imageLiteral(resourceName: "option2"),
+            action: { print("opción 2.2 pulsada") })
+        ]),
+
+    MenuTab(icon: #imageLiteral(resourceName: "tab3"),
+        selectionColor: UIColor.red,
+        options: [ 
+        
+        MenuOption(withName: "Imputar horas",
+            image: #imageLiteral(resourceName: "option1"),
+            action: { print("opción 3.1 pulsada") }),
+
+        MenuOption(withName: "Reportar gastos",
+            image: #imageLiteral(resourceName: "option2"),
+            action: { print("opción 3.2 pulsada") }),
+
+            MenuOption(withName: "Mi perfil",
+            image: #imageLiteral(resourceName: "option3"),
+            action: { print("opción 3.3 pulsada") })
+    ]),
+
+    MenuTab(icon: #imageLiteral(resourceName: "tab4"),
+        selectionColor: UIColor.green,
+        options: [ 
+        
+        MenuOption(withName: "Opcion 1",
+            image: #imageLiteral(resourceName: "option1"),
+            action: { print("opción 4.1 pulsada") }),
+
+        MenuOption(withName: "Opcion 2",
+            image: #imageLiteral(resourceName: "option2"),
+            action: { print("opción 4.2 pulsada") }),
+
+        MenuOption(withName: "Opcion 3",
+            image: #imageLiteral(resourceName: "option3"),
+            action: { print("opción 4.3 pulsada") }),
+
+        MenuOption(withName: "Opcion 4",
+            image: #imageLiteral(resourceName: "option4"),
+            action: { print("opción 4.4 pulsada") })
+    ])
+]
 ```
 
 Finally create your VSMenuViewController and present it where you need:
