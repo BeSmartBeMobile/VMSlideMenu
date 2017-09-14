@@ -1,6 +1,6 @@
 {
   "name": "VMSlideMenu",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "summary": "VMSlideMenu allows add a beautyful and intuitive menu to your app.",
   "description": "VMSlideMenu allows add a beautyful and intuitive menu to your app. You can organize options in tabs and rows, and customize colors.",
   "homepage": "https://github.com/BeSmartBeMobile/VMSlideMenu",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/BeSmartBeMobile/VMSlideMenu.git",
-    "tag": "1.0.4"
+    "tag": "1.0.5"
   },
   "platforms": {
     "ios": "8.0"

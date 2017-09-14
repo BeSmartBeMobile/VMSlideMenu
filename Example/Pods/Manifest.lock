@@ -1,6 +1,6 @@
 PODS:
   - SwiftLint (0.22.0)
-  - VMSlideMenu (1.0.4)
+  - VMSlideMenu (1.0.5)
 
 DEPENDENCIES:
   - SwiftLint
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
-  VMSlideMenu: e2cd17c97f54dd1462b177fdda9e2a5f30dac322
+  VMSlideMenu: ae4809522429c1ce376ce0e86b8c488c1fc05bd6
 
 PODFILE CHECKSUM: 8593552fb2ba366c1ae2fecc4d14be950a51892a
 
